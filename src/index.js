@@ -1,14 +1,37 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import "./index.css";
+import App from "./App";
+import React from "react";
+import thunk from "redux-thunk";
+import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
+import fbconfig from "./config/fbconfig";
+import reportWebVitals from "./reportWebVitals";
+import rootReducer from "./store/reducers/rootReducer";
+import { createStore, applyMiddleware, compose } from "redux";
+import { reduxFirestore, getFirestore } from "redux-firestore";
+import { reactReduxFirebase, getFirebase } from "react-redux-firebase";
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+const store = createStore(
+  rootReducer,
+  compose(
+    applyMiddleware(
+      thunk.withExtraArgument({
+        getFirebase,
+        getFirestore,
+      })
+    ),
+    reduxFirestore(fbconfig),
+    reactReduxFirebase(fbconfig, { userFirestoreForProfile: true, userProfile: 'authority', attachAuthIsReady: true })
+  )
+);
+
+store.firebaseAuthIsReady.then(
+  ReactDOM.render(
+    <Provider store={store}>
+      <App />
+    </Provider>,
+    document.getElementById("root")
+  )
 );
 
 // If you want to start measuring performance in your app, pass a function

@@ -1,25 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+import { Component } from "react";
+import Report from "./components/issues/Report";
+import SignIn from "./components/admin/auth/SignIn";
+import AddIssue from "./components/issues/AddIssue";
+import About from "./components/layout/about/About";
+import Dashboard from "./components/dashboard/Dashboard";
+import Footer from "./components/layout/navigation/Footer";
+import Navbar from "./components/layout/navigation/Navbar";
+import IssueDetails from "./components/issues/IssueDetails";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import AdminIssues from "./components/admin/issues/AdminIssues";
+import AdminCategory from "./components/admin/category/AdminCategory";
+import AdminAuthority from "./components/admin/authority/AdminAuthority";
+import AuthoritySignIn from "./components/authority/auth/AuthoritySignIn";
+import AuthorityIssues from "./components/authority/issues/AuthorityIssues";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  render() {
+    return (
+      <BrowserRouter>
+        <div className="App">
+          <Navbar />
+          <Switch>
+            <Route exact path="/" component={Report} />
+            <Route path="/about" component={About} />
+            <Route path="/home" component={Dashboard} />
+            <Route path="/report" component={AddIssue} />
+            <Route path="/adminlogin" component={SignIn} />
+            <Route path="/issues/:id" component={IssueDetails} />
+            <Route path="/admin/issues" component={AdminIssues} />
+            <Route path="/admin/category" component={AdminCategory} />
+            <Route path="/admin/authority" component={AdminAuthority} />
+            <Route path="/authoritylogin" component={AuthoritySignIn} />
+            <Route path="/authorityhome" component={AuthorityIssues} />
+          </Switch>
+          <Footer />
+        </div>
+      </BrowserRouter>
+    );
+  }
 }
 
 export default App;
