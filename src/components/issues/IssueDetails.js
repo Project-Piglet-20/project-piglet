@@ -16,10 +16,7 @@ const IssueDetails = (props) => {
             <div className="card z-depth-2">
               <div className="card-content">
                 <h3>{issue.Category.toUpperCase()}</h3>
-                <div
-                  className="divider red darken-2"
-                  style={{ padding: "3px" }}
-                ></div>
+                <div className="divider red darken-2 dividerPadding"></div>
                 <br />
                 <Map center={issue.Location} />
                 <div className="row">

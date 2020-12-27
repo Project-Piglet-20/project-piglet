@@ -31,11 +31,11 @@ class Table extends Component {
             <td className="center">
               {"\xa0\xa0"} {category.Cid}
             </td>
-            <td className="center">
-              {"\xa0\xa0"} {category.label}
+            <td className="tableContent">
+              {category.label}
             </td>
-            <td className="center">
-              {"\xa0\xa0"} {category.value}
+            <td className="tableContent">
+              {category.value}
             </td>
             <td className="center">
               <button
@@ -126,14 +126,13 @@ class Table extends Component {
 
     return (
       <div>
-        <br />
         <table className="highlight responsive-table">
           <thead>
             <tr>
               <th className="center">Sl No</th>
               <th className="center">ID</th>
-              <th className="center">Label</th>
-              <th className="center">Value</th>
+              <th>{"\xa0\xa0"}{"\xa0\xa0"}Label</th>
+              <th>{"\xa0\xa0"}{"\xa0\xa0"}Value</th>
               <th className="center red-text">Delete</th>
               <th className="center green-text">Edit</th>
             </tr>

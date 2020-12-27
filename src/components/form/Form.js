@@ -98,7 +98,7 @@ class Form extends Component {
           onSubmit={(event) => this.submitHandler(event)}
           onReset={this.resetHandler}
         >
-          <h3 className="center" style={{ color: "#00838f" }}>
+          <h3 className="center cyan-text text-darken-3">
             Fill in the details
             <i className="material-icons small">article</i>
           </h3>
@@ -110,7 +110,7 @@ class Form extends Component {
           </div>
           <br />
           <div>
-            <label style={{ fontSize: "larger", color: "black" }}>
+            <label className="reportLabel">
               What is the problem?
             </label>
             <i className="material-icons left">search</i>
@@ -123,8 +123,8 @@ class Form extends Component {
               />
             </div>
           </div>
-          <div style={{ padding: "30px" }}></div>
-          <div className="center" style={{ paddingLeft: "40px" }}>
+          <div className="formDivider"></div>
+          <div className="center formbtnAlign">
             <button
               disabled={this.state.Type ? false : true}
               className="btn waves-effect waves-light center"

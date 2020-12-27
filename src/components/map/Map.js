@@ -66,7 +66,7 @@ class Map extends Component {
 
   render() {
     return (
-      <div style={{ height: "60vh", width: "100%" }}>
+      <div className="mapSize">
         <GoogleMapReact
           bootstrapURLKeys={{ key: api_key }}
           center={this.state.center}

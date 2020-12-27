@@ -9,6 +9,8 @@ import Navbar from "./components/layout/navigation/Navbar";
 import IssueDetails from "./components/issues/IssueDetails";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import AdminIssues from "./components/admin/issues/AdminIssues";
+import AddCategory from "./components/admin/category/AddCategory";
+import AddAuthority from "./components/admin/authority/AddAuthority";
 import AdminCategory from "./components/admin/category/AdminCategory";
 import AdminAuthority from "./components/admin/authority/AdminAuthority";
 import AuthoritySignIn from "./components/authority/auth/AuthoritySignIn";
@@ -29,6 +31,8 @@ class App extends Component {
             <Route path="/issues/:id" component={IssueDetails} />
             <Route path="/admin/issues" component={AdminIssues} />
             <Route path="/admin/category" component={AdminCategory} />
+            <Route path="/admin/addcategory" component={AddCategory} />
+            <Route path="/admin/addauthority" component={AddAuthority} />
             <Route path="/admin/authority" component={AdminAuthority} />
             <Route path="/authoritylogin" component={AuthoritySignIn} />
             <Route path="/authorityhome" component={AuthorityIssues} />
@@ -39,5 +43,5 @@ class App extends Component {
     );
   }
 }
-
+ 
 export default App;

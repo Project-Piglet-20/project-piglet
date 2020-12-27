@@ -9,9 +9,18 @@ class AuthoritySignIn extends Component {
     password: "",
   };
   submitHandler = (event) => {
-    event.preventDefault();
-    this.props.signIn(this.state);
-    this.props.history.push('/authorityhome');
+    if (this.state.email !== "project.test.mail.19@gmail.com") {
+      event.preventDefault();
+      this.props.signIn(this.state);
+      setTimeout(() => {
+        this.props.history.push({
+          pathname: "/authorityhome",
+          Locality: this.props.Locality,
+        });
+      }, 2000);
+    } else {
+      alert("Invalid authority credentials!");
+    }
   };
   inputHandler = (event) => {
     this.setState({
@@ -21,7 +30,7 @@ class AuthoritySignIn extends Component {
   render() {
     const { authError } = this.props;
     return (
-      <div className="container" style={{ height: "42.5vh" }}>
+      <div className="container signInForm">
         <form onSubmit={this.submitHandler}>
           <h5 className="blye-grey-text text-darken-4">Sign In</h5>
           <div className="input-field">
@@ -59,6 +68,7 @@ class AuthoritySignIn extends Component {
 const mapStateToProps = (state) => {
   return {
     authError: state.auth.authError,
+    Locality: state.firebase.profile.locality,
   };
 };
 

@@ -1,7 +1,9 @@
 import { connect } from "react-redux";
 import React, { Component } from "react";
-import { signIn } from "../../../store/actions/authActions";
 import { withRouter } from "react-router-dom";
+import { signIn } from "../../../store/actions/authActions";
+
+var preLoader = [];
 
 class SignIn extends Component {
   state = {
@@ -9,9 +11,33 @@ class SignIn extends Component {
     password: "",
   };
   submitHandler = (event) => {
-    event.preventDefault();
-    this.props.signIn(this.state);
-    this.props.history.push('/admin/issues');
+    preLoader = (
+      <div className="preloader-wrapper active">
+        <div className="spinner-layer spinner-red-only">
+          <div className="circle-clipper left">
+            <div className="circle"></div>
+          </div>
+          <div className="gap-patch">
+            <div className="circle"></div>
+          </div>
+          <div className="circle-clipper right">
+            <div className="circle"></div>
+          </div>
+        </div>
+      </div>
+    );
+    if (this.state.email === "project.test.mail.19@gmail.com") {
+      event.preventDefault();
+      this.props.signIn(this.state);
+      // setTimeout(() => {
+      //   if (this.props.auth.uid) {
+      //     this.props.history.push("/admin/issues");
+      //   }
+      // }, 2000);
+      console.log(this.props)
+    } else {
+      alert("Invalid admin credentials!");
+    }
   };
   inputHandler = (event) => {
     this.setState({
@@ -21,7 +47,8 @@ class SignIn extends Component {
   render() {
     const { authError } = this.props;
     return (
-      <div className="container" style={{ height: "42.5vh" }}>
+      <div className="container signInForm">
+        <div className="center">{preLoader}</div>
         <form onSubmit={this.submitHandler}>
           <h5 className="blye-grey-text text-darken-4">Sign In</h5>
           <div className="input-field">

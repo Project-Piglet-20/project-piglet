@@ -8,13 +8,13 @@ const AuthoritySignedInLinks = (props) => {
   return (
     <>
       <li>
-        <a
+        <NavLink
           className="btn-flat white grey-text text-darken-4 waves-effect waves-light"
-          href="/authoritylogin"
+          to="/authoritylogin"
           onClick={props.signOut}
         >
           Logout
-        </a>
+        </NavLink>
       </li>
       <li>
         <NavLink to="#" className="btn btn-floating red darken-2">

@@ -4,41 +4,31 @@ import { connect } from "react-redux";
 import CommonLinks from "./CommonLinks";
 import SignedInLinks from "./SignedInLinks";
 import { withRouter } from "react-router-dom";
-import Background from "../../../images/Background.png";
 import AuthoritySignedInLinks from "./AuthoritySignedInLinks";
 
 const Navbar = (props) => {
   const curLoc = props.location.pathname.slice(1).toUpperCase();
   const { auth } = props;
-  const links =
-    auth.uid && auth.email === "project.test.mail.19@gmail.com" ? (
-      <>
-        <CommonLinks />
-        <SignedInLinks />
-      </>
-    ) : auth.email ? (
-      <AuthoritySignedInLinks />
-    ) : auth.uid ? (
-      <>
-        <CommonLinks />
-        <UserLinks />
-      </>
+  const links = auth.uid ? (
+      auth.email ? (
+        auth.email === "project.test.mail.19@gmail.com" ? (
+          <SignedInLinks />
+        ) : (
+          <AuthoritySignedInLinks />
+        )
+      ) : (
+        <>
+          <CommonLinks />
+          <UserLinks />
+        </>
+      )
     ) : (
       <CommonLinks />
     );
   return (
     <div>
-      <div style={{ paddingBottom: "2vh" }}>
-        <nav
-          role="navigation"
-          style={{
-            backgroundImage: `url(${Background})`,
-            backgroundPosition: "center",
-            backgroundSize: "cover",
-            height: "40vh",
-          }}
-          className="white"
-        >
+      <div className="navBar">
+        <nav role="navigation" className="white navBackground">
           <div className="nav-wrapper container">
             <div>
               <ul className="hide-on-med-and-down">
@@ -51,7 +41,7 @@ const Navbar = (props) => {
               </ul>
               <ul id="nav-mobile" className="sidenav">
                 <li>
-                  <h4 className="deep-orange-text text-accent-3">PIGLET</h4>
+                  <h4 className="deep-orange-text text-accent-3 center">PIGLET</h4>
                 </li>
                 <br />
                 <span className="left">{links}</span>
@@ -59,7 +49,7 @@ const Navbar = (props) => {
               <a href="!#" data-target="nav-mobile" className="sidenav-trigger">
                 <div>
                   <span>
-                    <div style={{ fontSize: "20px" }}>
+                    <div className="navMenuLogo">
                       <i className="material-icons left">menu</i>
                       PIGLET
                     </div>
@@ -68,10 +58,7 @@ const Navbar = (props) => {
               </a>
             </div>
             <br />
-            <div
-              style={{ paddingTop: "20px", fontFamily: "Ropa Sans" }}
-              className="center"
-            >
+            <div className="center navCurrentPage">
               <h1>
                 {!curLoc
                   ? "REPORT"
@@ -79,10 +66,7 @@ const Navbar = (props) => {
                   ? "ISSUES"
                   : curLoc}
               </h1>
-              <div
-                className="divider red darken-2"
-                style={{ padding: "5px" }}
-              ></div>
+              <div className="divider red darken-2 dividerPadding"></div>
             </div>
           </div>
         </nav>

@@ -112,3 +112,88 @@ code {
     transform: translateY(0) rotate(-45deg);
   }
 }
+
+.signInForm {
+  height: 42.5vh;
+}
+
+.btnPadding {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.tableContent {
+  max-width: 200px;
+  padding-left: 10px;
+}
+
+.dividerPadding {
+  padding: 3px;
+}
+
+.reportLabel {
+  font-size: "larger";
+  color: "black";
+}
+
+.formBtnAlign {
+  padding-left: 40px;
+}
+
+.formDivider {
+  padding: 30px;
+}
+
+.cardTitleHeight {
+  height: 70px;
+}
+
+.cardHeight {
+  height: 310px;
+}
+
+.cardImage {
+  max-width: 360px;
+  min-width: 100px;
+}
+
+.paraPadding {
+  padding-bottom: 10px;
+}
+
+.cardSpacing {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.footerSpacing {
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.navBar {
+  padding-bottom: 2vh;
+}
+
+.navBackground {
+  background-image: url('/src/images/Background.png');
+  background-position: center;
+  background-size: cover;
+  height: 40vh;
+}
+
+.navMenuLogo {
+  font-size: 20px;
+}
+
+.navCurrentPage {
+  padding-top: 20px;
+  font-family: 'Ropa Sans';
+}
+
+.mapSize {
+  height: 60vh;
+  width: 100%;
+}
+

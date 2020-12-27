@@ -10,7 +10,7 @@ const Notifications = (props) => {
           <span className="card-title white-text">
             <b>Notifications</b>
           </span>
-          <div className="divider black" style={{padding: '3px'}}></div>
+          <div className="divider black"></div>
           <ul className="notifications white-text">
             {notifications &&
               notifications.map((notification) => {

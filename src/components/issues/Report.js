@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import * as firebaseui from "firebaseui";
 import firebase from "firebase";
+import { connect } from "react-redux";
 
 class Report extends Component {
   componentDidMount() {
+    const { auth } = this.props;
     const uiConfig = {
       signInSuccessUrl: "/home",
       signInOptions: [
@@ -14,8 +16,19 @@ class Report extends Component {
       ],
       tosUrl: "/home",
     };
-    var ui = new firebaseui.auth.AuthUI(firebase.auth());
-    ui.start("#firebaseui-auth-container", uiConfig);
+    if (firebaseui.auth.AuthUI.getInstance()) {
+      const ui = firebaseui.auth.AuthUI.getInstance();
+      ui.start("#firebaseui-auth-container", uiConfig);
+      if (auth.uid) {
+        this.props.history.push('/home');
+      }
+      else if (!auth.uid){
+        this.props.history.push('/');
+      }
+    } else {
+      const ui = new firebaseui.auth.AuthUI(firebase.auth());
+      ui.start("#firebaseui-auth-container", uiConfig);
+    }
   }
   render() {
     return (
@@ -33,4 +46,10 @@ class Report extends Component {
   }
 }
 
-export default Report;
+const mapStateToProps = (state) => {
+  return {
+    auth: state.firebase.auth,
+  };
+};
+
+export default connect(mapStateToProps)(Report);

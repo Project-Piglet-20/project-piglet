@@ -8,17 +8,12 @@ const UserLinks = (props) => {
   return (
     <>
       <li>
-        <a
+        <NavLink
           className="btn-flat white grey-text text-darken-4 waves-effect waves-light"
-          href="/"
+          to="/"
           onClick={props.signOut}
         >
           Logout
-        </a>
-      </li>
-      <li>
-        <NavLink to="#" className="btn btn-floating red darken-2">
-          {auth.phoneNumber[3]}
         </NavLink>
       </li>
     </>

@@ -8,6 +8,11 @@ const SignedInLinks = (props) => {
   return (
     <>
       <li>
+        <NavLink to="#" className="btn btn-floating red darken-2">
+          {auth.email[0].toUpperCase()}
+        </NavLink>
+      </li>
+      <li>
         <NavLink to="/admin/authority">Authority</NavLink>
       </li>
       <li>
@@ -24,11 +29,6 @@ const SignedInLinks = (props) => {
         >
           Logout
         </a>
-      </li>
-      <li>
-        <NavLink to="#" className="btn btn-floating red darken-2">
-          {auth.email[0].toUpperCase()}
-        </NavLink>
       </li>
     </>
   );
