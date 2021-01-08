@@ -1,4 +1,3 @@
-import axios from "axios";
 import { compose } from "redux";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
@@ -48,16 +47,23 @@ class Form extends Component {
       latitude +
       ".json?access_token=" +
       ACCESS_TOKEN;
-    axios.get(url).then((res) => {
-      var toastHTML = "Your Location: " + res.data.features[1].text;
-      window.M.toast({
-        html: toastHTML,
-        options: {
-          displayLength: 100,
-        },
+    fetch(url)
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        var toastHTML = "Your Location: " + data.features[1].text;
+        window.M.toast({
+          html: toastHTML,
+          options: {
+            displayLength: 100,
+          },
+        });
+        this.setState({ Locality: data.features[1].text });
+      })
+      .catch((err) => {
+        console.log(err);
       });
-      this.setState({ Locality: res.data.features[1].text });
-    });
   };
   addData = (event) => {
     this.setState({
@@ -110,9 +116,7 @@ class Form extends Component {
           </div>
           <br />
           <div>
-            <label className="reportLabel">
-              What is the problem?
-            </label>
+            <label className="reportLabel">What is the problem?</label>
             <i className="material-icons left">search</i>
             <br />
             <div className="input-field">

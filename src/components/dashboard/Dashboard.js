@@ -1,4 +1,3 @@
-import axios from "axios";
 import React, { Component } from "react";
 import IssueList from "../issues/IssueList";
 import Notifications from "./Notifications";
@@ -21,9 +20,16 @@ class Dashboard extends Component {
           position.coords.latitude +
           ".json?access_token=" +
           ACCESS_TOKEN;
-        axios.get(url).then((res) => {
-          this.locality = res.data.features[1].text;
-        });
+          fetch(url)
+          .then((res) => {
+            return res.json();
+          })
+          .then((data) => {
+            this.locality = data.features[1].text;
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       });
     }
   }
@@ -67,7 +73,7 @@ export default compose(
   firestoreConnect([
     {
       collection: "issues",
-      limit: 10,
+      // limit: 10,
       orderBy: ["DOR", "desc"],
     },
     {
