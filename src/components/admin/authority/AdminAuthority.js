@@ -11,7 +11,7 @@ class AdminAuthority extends Component {
     this.props.history.push("/admin/addauthority");
   };
   render() {
-    const { authorities, auth } = this.props;
+    const { authorities } = this.props;
     return (
       <div className="row">
         <div className="col S12 m1">

@@ -1,6 +1,6 @@
 import React from "react";
 import "firebase/firestore";
-import firebase from "firebase/app";
+// import firebase from "firebase/app";
 
 const EditAuthority = (props) => {
   const { authorityData } = props;

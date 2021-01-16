@@ -1,4 +1,4 @@
-import { Component } from "react";
+import React, { Component } from "react";
 import Report from "./components/issues/Report";
 import SignIn from "./components/admin/auth/SignIn";
 import AddIssue from "./components/issues/AddIssue";

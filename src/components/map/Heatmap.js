@@ -23,7 +23,7 @@ class Heatmap extends Component {
         mapTypeId: "satellite",
         heatmap: []
     };
-    UNSAFE_componentWillMount() {
+    componentDidMount() {
         if(navigator.geolocation){
             navigator.geolocation.getCurrentPosition(position => {
                 var url = 'https://api.mapbox.com/geocoding/v5/mapbox.places/'

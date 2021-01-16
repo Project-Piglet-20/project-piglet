@@ -3,14 +3,14 @@ import "firebase/firestore";
 import firebase from "firebase/app";
 import { withRouter } from "react-router-dom";
 
-var authorityData = {
-  id: "",
-  name: "",
-  email: "",
-  phone: "",
-  password: "",
-  locality: "",
-};
+// var authorityData = {
+//   id: "",
+//   name: "",
+//   email: "",
+//   phone: "",
+//   password: "",
+//   locality: "",
+// };
 
 const Table = (props) => {
   var key = 0;

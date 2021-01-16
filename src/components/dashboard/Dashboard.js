@@ -9,9 +9,12 @@ import Resolved from "./Resolved";
 var ACCESS_TOKEN =
   "pk.eyJ1IjoidmlwaW5yYmhhcmFkd2FqIiwiYSI6ImNrY3VvZGQ0MzJhNHYyeHM2a21uNGEzZm4ifQ.53CYrj7PS_gUiv8iqESrXQ";
 
+var locality = "";
+
 class Dashboard extends Component {
-  locality = "";
-  componentWillMount() {
+  notificationList = "";
+  resolvedList = "";
+  componentDidMount() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
         var url =
@@ -26,7 +29,7 @@ class Dashboard extends Component {
             return res.json();
           })
           .then((data) => {
-            this.locality = data.features[1].text;
+            locality = data.features[1].text;
           })
           .catch((err) => {
             console.log(err);
@@ -46,7 +49,7 @@ class Dashboard extends Component {
                   issues &&
                   issues
                     .filter((issue) => {
-                      return issue.Locality === this.locality;
+                      return issue.Locality === locality;
                     })
                     .slice(0, 10)
                 }
@@ -60,7 +63,7 @@ class Dashboard extends Component {
                 notifications
                   .filter((notification) => {
                     return (
-                      notification.locality === this.locality &&
+                      notification.locality === locality &&
                       notification.status === "Reported"
                     );
                   })
@@ -73,7 +76,7 @@ class Dashboard extends Component {
                 notifications
                   .filter((notification) => {
                     return (
-                      notification.locality === this.locality &&
+                      notification.locality === locality &&
                       notification.status === "Resolved"
                     );
                   })

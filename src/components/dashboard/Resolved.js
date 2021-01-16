@@ -7,21 +7,22 @@ const Resolved = (props) => {
     <div className="section">
       <div className="card z-dept-0 green darken-1">
         <div className="card-content">
-          <span className="card-title white-text">
-            <b>Resolved</b>
+          <span className="card-title black-text">
+            <b>RESOLVED<i class="material-icons left">done_all</i></b>
           </span>
-          <div className="divider black"></div>
-          <ul className="notifications white-text">
+          <div className="divider white"></div>
+          <ul className="notifications black-text">
             {notifications &&
               notifications.map((notification) => {
                 return (
                   <li key={notification.id}>
+                    <i className="material-icons left black-text">arrow_right</i>
                     <span>
-                      <b>{notification.problem}</b> resolved in{" "}
-                      <b>{notification.locality}</b>
+                      <b className="white-text">{notification.problem}</b> resolved in{" "}
+                      <b className="white-text">{notification.locality}</b>
                     </span>
-                    <div className="black-text note-date">
-                      {moment(notification.time.toDate()).fromNow()}
+                    <div className="black-text note-date date-spacing">
+                      <b>{moment(notification.time.toDate()).fromNow()}</b>
                     </div>
                   </li>
                 );

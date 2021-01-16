@@ -6,7 +6,7 @@ import { firestoreConnect } from "react-redux-firebase";
 
 class AdminIssues extends Component {
   render() {
-    const { issues, notifications, auth } = this.props;
+    const { issues, notifications } = this.props;
     return (
       <div className="row">
         <div className="col s12 m10 offset-m1">

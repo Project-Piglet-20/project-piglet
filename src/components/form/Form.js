@@ -21,7 +21,7 @@ class Form extends Component {
     Status: "Reported",
     DOC: "-",
   };
-  UNSAFE_componentWillMount() {
+  componentDidMount() {
     this.getLocation();
   }
   getLocation() {

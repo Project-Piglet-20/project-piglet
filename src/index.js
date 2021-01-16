@@ -21,15 +21,21 @@ const store = createStore(
       })
     ),
     reduxFirestore(fbconfig),
-    reactReduxFirebase(fbconfig, { useFirestoreForProfile: true, userProfile: 'authority', attachAuthIsReady: true })
+    reactReduxFirebase(fbconfig, {
+      useFirestoreForProfile: true,
+      userProfile: "authority",
+      attachAuthIsReady: true,
+    })
   )
 );
 
 store.firebaseAuthIsReady.then(
   ReactDOM.render(
-    <Provider store={store}>
-      <App />
-    </Provider>,
+    <React.Fragment>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </React.Fragment>,
     document.getElementById("root")
   )
 );

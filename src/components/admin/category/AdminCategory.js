@@ -9,7 +9,7 @@ class AdminCategory extends Component {
     this.props.history.push("/admin/addcategory");
   };
   render() {
-    const { dropdown, auth } = this.props;
+    const { dropdown } = this.props;
     const btn_data = "ADD CATEGORY";
     return (
       <div className="row">

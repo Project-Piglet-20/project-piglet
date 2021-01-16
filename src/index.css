@@ -135,6 +135,10 @@ code {
   padding-left: 90px;
 }
 
+.date-spacing{
+  padding-left: 40px;
+}
+
 .tableContent {
   max-width: 200px;
   padding-left: 10px;

@@ -14,8 +14,8 @@ const IssueList = ({ issues }) => {
         );
       })
     ) : (
-      <div className="progress">
-        <div className="indeterminate"></div>
+      <div>
+        <h2>No issues Reported</h2>
       </div>
     )
   ) : (
