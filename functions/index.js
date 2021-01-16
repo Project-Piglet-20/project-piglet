@@ -14,10 +14,13 @@ exports.issueCreated = functions.firestore
   .document("issues/{issueId}")
   .onCreate((doc) => {
     const issue = doc.data();
+    console.log(doc.id);
     const notification = {
       locality: `${issue.Locality}`,
       problem: `${issue.Type}`,
       time: admin.firestore.FieldValue.serverTimestamp(),
+      status: "Reported",
+      docId: `${doc.id}`,
     };
     return createNotifications(notification);
   });

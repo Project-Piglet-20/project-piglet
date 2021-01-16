@@ -46,7 +46,7 @@ class Table extends Component {
                 <i className="material-icons">clear</i>
               </button>
             </td>
-            <td className="center">
+            {/* <td className="center">
               <button
                 data-target="modalEdit"
                 className="btn-flat waves-effect waves-light green-text modal-trigger"
@@ -62,46 +62,46 @@ class Table extends Component {
               >
                 <i className="material-icons">edit</i>
               </button>
-            </td>
+            </td> */}
           </tr>
         );
       });
 
-    const editHandler = (event) => {
-      event.preventDefault();
-      const categoryDetails = {
-        Cid: "",
-        label: "",
-        value: "",
-      };
-      categoryDetails.Cid = this.state.Cid;
-      categoryDetails.label = this.state.label;
-      categoryDetails.value = this.state.value;
+    // const editHandler = (event) => {
+    //   event.preventDefault();
+    //   const categoryDetails = {
+    //     Cid: "",
+    //     label: "",
+    //     value: "",
+    //   };
+    //   categoryDetails.Cid = this.state.Cid;
+    //   categoryDetails.label = this.state.label;
+    //   categoryDetails.value = this.state.value;
 
-      var authorityfilter = categories.filter(
-        (category) => category.id === this.state.clickedID
-      );
+    //   var authorityfilter = categories.filter(
+    //     (category) => category.id === this.state.clickedID
+    //   );
 
-      const DocID = authorityfilter[0].id;
-      var db = firebase.firestore();
-      db.collection("dropdownList")
-        .doc(DocID)
-        .update({
-          Cid: this.state.Cid,
-          label: this.state.label,
-          value: this.state.value,
-        })
-        .then(function () {
-          console.log("Document successfully edited!");
-        })
-        .catch(function (error) {
-          console.error("Error updating document: ", error);
-        });
-      var newCategories = categories.filter(
-        (category) => category.id !== event
-      );
-      categories = newCategories;
-    };
+    //   const DocID = authorityfilter[0].id;
+    //   var db = firebase.firestore();
+    //   db.collection("dropdownList")
+    //     .doc(DocID)
+    //     .update({
+    //       Cid: this.state.Cid,
+    //       label: this.state.label,
+    //       value: this.state.value,
+    //     })
+    //     .then(function () {
+    //       console.log("Document successfully edited!");
+    //     })
+    //     .catch(function (error) {
+    //       console.error("Error updating document: ", error);
+    //     });
+    //   var newCategories = categories.filter(
+    //     (category) => category.id !== event
+    //   );
+    //   categories = newCategories;
+    // };
 
     const deleteHandler = (event) => {
       var tempCategories = categories.filter(
@@ -134,12 +134,12 @@ class Table extends Component {
               <th>{"\xa0\xa0"}{"\xa0\xa0"}Label</th>
               <th>{"\xa0\xa0"}{"\xa0\xa0"}Value</th>
               <th className="center red-text">Delete</th>
-              <th className="center green-text">Edit</th>
+              {/* <th className="center green-text">Edit</th> */}
             </tr>
           </thead>
           <tbody>{categoryList}</tbody>
         </table>
-        <div id="modalEdit" className="modal">
+        {/* <div id="modalEdit" className="modal">
           <div className="modal-content">
             <form onSubmit={(event) => editHandler(event)}>
               <h3 className="center blue-grey-text text-darken-4">
@@ -202,7 +202,7 @@ class Table extends Component {
               </div>
             </form>
           </div>
-        </div>
+        </div> */}
       </div>
     );
   }

@@ -7,8 +7,8 @@ import { Redirect } from "react-router-dom";
 
 class AuthorityIssues extends Component {
   render() {
-    var { issues, auth, Locality } = this.props;
-    if(!auth.uid) <Redirect to="/authoritylogin" />
+    var { issues, notifications, auth, Locality } = this.props;
+    if (!auth.uid) <Redirect to="/authoritylogin" />;
     return (
       <div className="row">
         {!auth.uid ? (
@@ -24,9 +24,17 @@ class AuthorityIssues extends Component {
               <div className="divider"></div>
               <Table
                 issues={
-                  (issues = issues && issues.filter((issue) => {
-                    return issue.Locality === Locality;
-                  }))
+                  (issues =
+                    issues &&
+                    issues.filter((issue) => {
+                      return issue.Locality === Locality;
+                    }))
+                }
+                notifications={
+                  notifications &&
+                  notifications.filter((notification) => {
+                    return notification.locality === Locality;
+                  })
                 }
               />
             </div>
@@ -40,6 +48,7 @@ class AuthorityIssues extends Component {
 const mapStateToProps = (state) => {
   return {
     issues: state.firestore.ordered.issues,
+    notifications: state.firestore.ordered.notifications,
     auth: state.firebase.auth,
     Locality: state.firebase.profile.locality,
   };
@@ -50,6 +59,11 @@ export default compose(
   firestoreConnect([
     {
       collection: "issues",
+      orderBy: ["DOR", "desc"],
+    },
+    {
+      collection: "notifications",
+      orderBy: ["locality", "asc"],
     },
   ])
 )(AuthorityIssues);

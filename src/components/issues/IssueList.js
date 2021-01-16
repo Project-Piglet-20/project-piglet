@@ -14,10 +14,8 @@ const IssueList = ({ issues }) => {
         );
       })
     ) : (
-      <div className="card z-depth-2 formDivider center">
-        <div className="divider dividerPadding red darken-3"></div>
-        <h3>No issues reported near you!</h3>
-        <div className="divider dividerPadding red darken-3"></div>
+      <div className="progress">
+        <div className="indeterminate"></div>
       </div>
     )
   ) : (

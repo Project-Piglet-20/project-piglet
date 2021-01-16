@@ -3,7 +3,7 @@ import "firebase/firestore";
 import firebase from "firebase/app";
 
 const Table = (props) => {
-  var { issues } = props;
+  var { issues, notifications } = props;
   var key = 0;
   var issueList =
     issues &&
@@ -59,6 +59,18 @@ const Table = (props) => {
       })
       .catch(function (error) {
         console.error("Error removing document: ", error);
+      });
+    var tempNotif = notifications.filter(
+      (notification) => notification.docId === event
+    );
+    db.collection("notifications")
+      .doc(tempNotif[0].id)
+      .delete()
+      .then(function () {
+        console.log("Notification successfully deleted!");
+      })
+      .catch(function (error) {
+        console.error("Error removing notification: ", error);
       });
     var newIssues = issues.filter((issue) => issue.id !== event);
     issues = newIssues;

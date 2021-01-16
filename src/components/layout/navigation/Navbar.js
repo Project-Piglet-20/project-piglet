@@ -1,5 +1,4 @@
 import React from "react";
-import UserLinks from "./UserLinks";
 import { connect } from "react-redux";
 import CommonLinks from "./CommonLinks";
 import SignedInLinks from "./SignedInLinks";
@@ -19,7 +18,7 @@ const Navbar = (props) => {
       ) : (
         <>
           <CommonLinks />
-          <UserLinks />
+          {/* <UserLinks /> */}
         </>
       )
     ) : (

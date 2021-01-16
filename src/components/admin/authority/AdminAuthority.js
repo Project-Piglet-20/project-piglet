@@ -6,42 +6,28 @@ import { firestoreConnect } from "react-redux-firebase";
 
 class AdminAuthority extends Component {
   addAuthorityHandler = () => {
-    this.props.history.push({
-      pathname: "/admin/addauthority",
-      state: this.state,
-    });
+    console.log("Clicked");
+    console.log(this.props.history);
+    this.props.history.push("/admin/addauthority");
   };
   render() {
     const { authorities, auth } = this.props;
     return (
       <div className="row">
-        {!auth.uid ? (
-          <>
-            <div className="progress">
-              <div className="indeterminate"></div>
-            </div>
-            {this.props.history.push("/adminlogin")}
-          </>
-        ) : (
-          <>
-            <div className="col S12 m1">
-              <div className="btnPadding">
-                <br />
-                <button
-                  className="btn waves-effect waves-light red"
-                  onClick={() => this.addAuthorityHandler()}
-                >
-                  ADD AUTHORITY
-                </button>
-              </div>
-            </div>
-            <div className="col s12 m10">
-              <br />
-              <div className="divider"></div>
-              <Table authorities={authorities} />
-            </div>
-          </>
-        )}
+        <div className="col S12 m1">
+          <br />
+          <button
+            className="btn waves-effect waves-light red"
+            onClick={() => this.addAuthorityHandler()}
+          >
+            ADD AUTHORITY
+          </button>
+        </div>
+        <div className="col s12 m10">
+          <br />
+          <div className="divider"></div>
+          <Table authorities={authorities} />
+        </div>
       </div>
     );
   }
@@ -60,6 +46,7 @@ export default compose(
   firestoreConnect([
     {
       collection: "authority",
+      orderBy: ["name", "asc"],
     },
   ])
 )(AdminAuthority);

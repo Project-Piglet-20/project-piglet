@@ -4,6 +4,7 @@ import Notifications from "./Notifications";
 import { connect } from "react-redux";
 import { compose } from "redux";
 import { firestoreConnect } from "react-redux-firebase";
+import Resolved from "./Resolved";
 
 var ACCESS_TOKEN =
   "pk.eyJ1IjoidmlwaW5yYmhhcmFkd2FqIiwiYSI6ImNrY3VvZGQ0MzJhNHYyeHM2a21uNGEzZm4ifQ.53CYrj7PS_gUiv8iqESrXQ";
@@ -20,7 +21,7 @@ class Dashboard extends Component {
           position.coords.latitude +
           ".json?access_token=" +
           ACCESS_TOKEN;
-          fetch(url)
+        fetch(url)
           .then((res) => {
             return res.json();
           })
@@ -43,15 +44,42 @@ class Dashboard extends Component {
               <IssueList
                 issues={
                   issues &&
-                  issues.filter((issue) => {
-                    return issue.Locality === this.locality;
-                  })
+                  issues
+                    .filter((issue) => {
+                      return issue.Locality === this.locality;
+                    })
+                    .slice(0, 10)
                 }
               />
             </div>
           </div>
           <div className="col s12 m3 offset-m1">
-            <Notifications notifications={notifications} />
+            <Notifications
+              notifications={
+                notifications &&
+                notifications
+                  .filter((notification) => {
+                    return (
+                      notification.locality === this.locality &&
+                      notification.status === "Reported"
+                    );
+                  })
+                  .slice(0, 5)
+              }
+            />
+            <Resolved
+              notifications={
+                notifications &&
+                notifications
+                  .filter((notification) => {
+                    return (
+                      notification.locality === this.locality &&
+                      notification.status === "Resolved"
+                    );
+                  })
+                  .slice(0, 5)
+              }
+            />
           </div>
           <div className="col m1"></div>
         </div>
@@ -73,12 +101,10 @@ export default compose(
   firestoreConnect([
     {
       collection: "issues",
-      // limit: 10,
       orderBy: ["DOR", "desc"],
     },
     {
       collection: "notifications",
-      limit: 5,
       orderBy: ["time", "desc"],
     },
   ])

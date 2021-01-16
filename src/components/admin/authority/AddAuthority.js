@@ -95,14 +95,20 @@ class AddAuthority extends Component {
                     </label>
                   </div>
                 </div>
+                <br />
                 <div>
-                  <div className="right">
+                  <div className="left cancelbtn">
                     <button
-                      className="btn waves-effect waves-light"
-                      onClick={this.props.history.push("/admin/authority")}
+                      className="btn waves-effect waves-light red lighten-1"
+                      onClick={() =>
+                        this.props.history.push("/admin/authority")
+                      }
                     >
+                      <i className="material-icons left">clear</i>
                       Cancel
                     </button>
+                  </div>
+                  <div className="right submitbtn">
                     <button
                       className="btn waves-effect waves-light"
                       type="submit"
@@ -115,6 +121,8 @@ class AddAuthority extends Component {
                   <div className="red-text center">
                     {authError ? <h5>{authError}</h5> : null}
                   </div>
+                  <br />
+                  <br />
                 </div>
               </form>
             </div>

@@ -4,25 +4,16 @@ import { compose } from "redux";
 import { connect } from "react-redux";
 import { firestoreConnect } from "react-redux-firebase";
 
-class AdminIssues extends Component {  
+class AdminIssues extends Component {
   render() {
-    const { issues, auth } = this.props;
+    const { issues, notifications, auth } = this.props;
     return (
       <div className="row">
-        {!auth.uid ? (
-          <>
-            <div className="progress">
-              <div className="indeterminate"></div>
-            </div>
-            {this.props.history.push("/adminlogin")}
-          </>
-        ) : (
-          <div className="col s12 m10 offset-m1">
-            <br />
-            <div className="divider"></div>
-            <Table issues={issues} />
-          </div>
-        )}
+        <div className="col s12 m10 offset-m1">
+          <br />
+          <div className="divider"></div>
+          <Table issues={issues} notifications={notifications} />
+        </div>
       </div>
     );
   }
@@ -31,6 +22,7 @@ class AdminIssues extends Component {
 const mapStateToProps = (state) => {
   return {
     issues: state.firestore.ordered.issues,
+    notifications: state.firestore.ordered.notifications,
     auth: state.firebase.auth,
   };
 };
@@ -40,6 +32,11 @@ export default compose(
   firestoreConnect([
     {
       collection: "issues",
+      orderBy: ["DOR", "desc"],
+    },
+    {
+      collection: "notifications",
+      orderBy: ["time", "desc"],
     },
   ])
 )(AdminIssues);

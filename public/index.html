@@ -77,6 +77,11 @@
         var elems = document.querySelectorAll(".tabs");
         var instance = M.Tabs.init(elems, options);
       });
+      document.addEventListener("DOMContentLoaded", function () {
+        const options = [];
+        var elems = document.querySelectorAll(".dropdown-trigger");
+        var instances = M.Dropdown.init(elems, options);
+      });
     </script>
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>

@@ -3,7 +3,7 @@ import "firebase/firestore";
 import firebase from "firebase/app";
 
 const Table = (props) => {
-  var { issues } = props;
+  var { issues, notifications } = props;
   var key = 0;
   var issueList =
     issues &&
@@ -65,7 +65,14 @@ const Table = (props) => {
     var db = firebase.firestore();
     db.collection("issues")
       .doc(event)
-      .update({ DOC: new Date(), Status: "Resolved" });
+      .update({ DocID: tempIssues[0].id, DOC: new Date(), Status: "Resolved" });
+    var tempNotif = notifications.filter(
+      (notification) => notification.docId === event
+    );
+    db.collection("notifications").doc(tempNotif[0].id).update({
+      status: "Resolved",
+      time: new Date(),
+    });
     newIssues.push(tempIssues[0]);
     issues = newIssues;
   };
