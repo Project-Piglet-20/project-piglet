@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import GoogleMapReact from "google-map-react";
 
+// const api_key = "AIzaSyBX46e_tN99em7J8vfPMKsNI_1lrx2PdQk";
 const api_key = "AIzaSyAbIuPIQlI4AukyWuZOgHp4I5lammFppv8";
 
 const Marker = (props) => {

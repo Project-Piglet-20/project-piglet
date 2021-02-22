@@ -9,9 +9,8 @@ import Resolved from "./Resolved";
 var ACCESS_TOKEN =
   "pk.eyJ1IjoidmlwaW5yYmhhcmFkd2FqIiwiYSI6ImNrY3VvZGQ0MzJhNHYyeHM2a21uNGEzZm4ifQ.53CYrj7PS_gUiv8iqESrXQ";
 
-var locality = "";
-
 class Dashboard extends Component {
+  locality = "";
   notificationList = "";
   resolvedList = "";
   componentDidMount() {
@@ -29,7 +28,7 @@ class Dashboard extends Component {
             return res.json();
           })
           .then((data) => {
-            locality = data.features[1].text;
+            this.locality = data.features[1].text;
           })
           .catch((err) => {
             console.log(err);
@@ -49,10 +48,11 @@ class Dashboard extends Component {
                   issues &&
                   issues
                     .filter((issue) => {
-                      return issue.Locality === locality;
+                      return issue.Locality === this.locality;
                     })
                     .slice(0, 10)
                 }
+                Locality={this.locality}
               />
             </div>
           </div>
@@ -63,7 +63,7 @@ class Dashboard extends Component {
                 notifications
                   .filter((notification) => {
                     return (
-                      notification.locality === locality &&
+                      notification.locality === this.locality &&
                       notification.status === "Reported"
                     );
                   })
@@ -76,7 +76,7 @@ class Dashboard extends Component {
                 notifications
                   .filter((notification) => {
                     return (
-                      notification.locality === locality &&
+                      notification.locality === this.locality &&
                       notification.status === "Resolved"
                     );
                   })

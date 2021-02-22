@@ -7,47 +7,51 @@ const Table = (props) => {
   var key = 0;
   var issueList =
     issues &&
-    issues.map((issue) => {
-      return (
-        <tr key={key}>
-          <td>
-            {"\xa0\xa0"} {++key}
-          </td>
-          <td>
-            {"\xa0\xa0"} {issue.Category}
-          </td>
-          <td>
-            {"\xa0\xa0"} {issue.Type}
-          </td>
-          <td>
-            {"\xa0\xa0"} {issue.Locality}
-          </td>
-          <td>
-            {"\xa0\xa0"}{" "}
-            {new Date(issue.DOR.seconds * 1000).toLocaleDateString("en-US")}
-          </td>
-          <td className="center">
-            <button
-              className={
-                issue.Status === "Resolved"
-                  ? "btn waves-effect waves-teal"
-                  : "btn waves-effect waves-red red"
-              }
-              value={issue.Status}
-              onClick={() => clickHandler(issue.id)}
-            >
-              {issue.Status}
-            </button>
-          </td>
-          <td>
-            {"\xa0\xa0"}{" "}
-            {issue.DOC !== "-"
-              ? new Date(issue.DOC.seconds * 1000).toLocaleDateString("en-US")
-              : "-"}
-          </td>
-        </tr>
-      );
-    });
+    issues
+      .sort(function (a, b) {
+        return a.Status.localeCompare(b.Status);
+      })
+      .map((issue) => {
+        return (
+          <tr key={key}>
+            <td>
+              {"\xa0\xa0"} {++key}
+            </td>
+            <td>
+              {"\xa0\xa0"} {issue.Category}
+            </td>
+            <td>
+              {"\xa0\xa0"} {issue.Type}
+            </td>
+            <td>
+              {"\xa0\xa0"} {issue.Locality}
+            </td>
+            <td>
+              {"\xa0\xa0"}{" "}
+              {new Date(issue.DOR.seconds * 1000).toLocaleDateString("en-US")}
+            </td>
+            <td className="center">
+              <button
+                className={
+                  issue.Status === "Resolved"
+                    ? "btn waves-effect waves-teal disabled"
+                    : "btn waves-effect waves-red red"
+                }
+                value={issue.Status}
+                onClick={() => clickHandler(issue.id)}
+              >
+                {issue.Status}
+              </button>
+            </td>
+            <td>
+              {"\xa0\xa0"}{" "}
+              {issue.DOC !== "-"
+                ? new Date(issue.DOC.seconds * 1000).toLocaleDateString("en-US")
+                : "-"}
+            </td>
+          </tr>
+        );
+      });
   const clickHandler = (event) => {
     var tempIssues = issues.filter((issue) => issue.id === event);
     var newIssues = issues.filter((issue) => issue.id !== event);
@@ -74,6 +78,9 @@ const Table = (props) => {
       time: new Date(),
     });
     newIssues.push(tempIssues[0]);
+    newIssues.sort(function (a, b) {
+      return a.Status.localeCompare(b.Status);
+    })
     issues = newIssues;
   };
   return (
