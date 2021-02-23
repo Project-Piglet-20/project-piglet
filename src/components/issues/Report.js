@@ -19,11 +19,10 @@ class Report extends Component {
     if (firebaseui.auth.AuthUI.getInstance()) {
       const ui = firebaseui.auth.AuthUI.getInstance();
       ui.start("#firebaseui-auth-container", uiConfig);
-      if (auth.uid) {
-        this.props.history.push('/home');
-      }
-      else if (!auth.uid){
-        this.props.history.push('/');
+      if (auth && auth.uid) {
+        this.props.history.push("/home");
+      } else if (auth && !auth.uid) {
+        this.props.history.push("/");
       }
     } else {
       const ui = new firebaseui.auth.AuthUI(firebase.auth());
@@ -31,6 +30,7 @@ class Report extends Component {
     }
   }
   render() {
+    console.log(this.props.history);
     return (
       <>
         <div className="center">

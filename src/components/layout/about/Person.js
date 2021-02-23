@@ -1,6 +1,6 @@
 import React from "react";
 
-const Person = ({ people, content }) => {
+const Person = ({ people }) => {
   const personList = people.map((person) => {
     const name = (
       <div>
@@ -22,11 +22,7 @@ const Person = ({ people, content }) => {
                 <h5>{name}</h5>
               </span>
               <br />
-              <p className="paraPadding">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
-                ullamcorper pretium ornare. In iaculis, nulla vel feugiat
-                efficitur.
-              </p>
+              <p className="paraPadding">{person.content}</p>
               <div className="divider"></div>
               <div className="cardSpacing">
                 <span className="left blue-text">
@@ -48,7 +44,7 @@ const Person = ({ people, content }) => {
                 </h5>
               </span>
               <br />
-              <p>{content}</p>
+              <p>{person.more}</p>
             </div>
           </div>
         </div>

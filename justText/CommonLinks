@@ -1,0 +1,49 @@
+import React from "react";
+import { NavLink, withRouter } from "react-router-dom";
+
+const CommonLinks = (props) => {
+  return (
+    <>
+      <li>
+        <button
+          className={
+            window.innerWidth < 1000
+              ? "btn waves-effect waves-light black homebtn"
+              : "btn-flat waves-effect waves-light"
+          }
+          onClick={() => {
+            props.location.pathname !== "/home"
+              ? alert("Please refresh the page after being redirected!")
+              : console.log("in Home");
+          }}
+        >
+          <NavLink to="/home">Home</NavLink>
+        </button>
+      </li>
+      <li>
+        <button
+          className={
+            window.innerWidth < 1000
+              ? "btn waves-effect waves-light black aboutbtn"
+              : "btn-flat waves-effect waves-light"
+          }
+        >
+          <NavLink to="/about">About</NavLink>
+        </button>
+      </li>
+      <li>
+        <button
+          className={
+            window.innerWidth < 1000
+              ? "btn waves-effect waves-light black reportbtn"
+              : "btn-flat waves-effect waves-light"
+          }
+        >
+          <NavLink to="/report">Report</NavLink>
+        </button>
+      </li>
+    </>
+  );
+};
+
+export default withRouter(CommonLinks);

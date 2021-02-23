@@ -8,15 +8,10 @@ import { Redirect } from "react-router-dom";
 class AuthorityIssues extends Component {
   render() {
     var { issues, notifications, auth, Locality } = this.props;
-    if (!auth.uid) <Redirect to="/authoritylogin" />;
     return (
       <div className="row">
         {!auth.uid ? (
-          <>
-            <div className="progress">
-              <div className="indeterminate"></div>
-            </div>
-          </>
+          <Redirect to="/authoritylogin" />
         ) : (
           <>
             <div className="col s12 m10 offset-m1">
@@ -47,10 +42,10 @@ class AuthorityIssues extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    issues: state.firestore.ordered.issues,
-    notifications: state.firestore.ordered.notifications,
     auth: state.firebase.auth,
+    issues: state.firestore.ordered.issues,
     Locality: state.firebase.profile.locality,
+    notifications: state.firestore.ordered.notifications,
   };
 };
 

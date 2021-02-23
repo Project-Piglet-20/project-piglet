@@ -89,21 +89,9 @@ class Form extends Component {
       alert("Please select the issue!");
     }
   };
-  // resetHandler = () => {
-  //   const state = {
-  //     Category: "Select Category",
-  //     Type: null,
-  //     Location: {
-  //       lat: null,
-  //       lng: null,
-  //     },
-  //     Number: null,
-  //     Status: "Reported",
-  //     DOC: "-",
-  //   };
-  //   this.setState({ state });
-  // };
   render() {
+    const { auth } = this.props;
+    if (!auth.uid) this.props.history.push("/");
     return (
       <div className="container">
         <form
@@ -131,7 +119,11 @@ class Form extends Component {
           <br />
           <div className="input-field">
             <i className="material-icons prefix">phone</i>
-            <input id="Number" type="number" />
+            <input
+              id="Number"
+              type="number"
+              onChange={(event) => this.clickHandler(event)}
+            />
             <label htmlFor="number">{this.state.Number}</label>
           </div>
           <div className="formDivider"></div>
@@ -144,13 +136,6 @@ class Form extends Component {
               <i className="material-icons right">send</i>
               Submit
             </button>
-            {/* <button
-              disabled={this.state.Type ? false : true}
-              className="btn-floating waves-effect waves-light red right"
-              type="reset"
-            >
-              <i className="material-icons">delete</i>
-            </button> */}
           </div>
           <br />
         </form>
@@ -161,6 +146,7 @@ class Form extends Component {
 
 const mapStateToProps = (state) => {
   return {
+    auth: state.firebase.auth,
     CategoryList: state.firestore.ordered.dropdownList,
   };
 };

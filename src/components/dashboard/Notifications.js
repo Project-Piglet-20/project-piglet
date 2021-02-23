@@ -9,7 +9,7 @@ const Notifications = (props) => {
         <div className="card-content">
           <span className="card-title white-text">
             <b>
-              NOTIFICATIONS<i className="material-icons left">campaign</i>
+              REPORTED<i className="material-icons left">campaign</i>
             </b>
           </span>
           <div className="divider black"></div>
@@ -17,9 +17,11 @@ const Notifications = (props) => {
             {notifications &&
               notifications.map((notification) => {
                 return (
-                  <div className="input-field">
-                    <li key={notification.id}>
-                      <i className="material-icons left black-text">arrow_right</i>
+                  <div className="input-field" key={notification.id}>
+                    <li>
+                      <i className="material-icons left black-text">
+                        arrow_right
+                      </i>
                       <span>
                         <b>{notification.problem}</b> reported in{" "}
                         <b>{notification.locality}</b>

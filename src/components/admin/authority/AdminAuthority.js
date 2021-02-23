@@ -7,11 +7,10 @@ import { firestoreConnect } from "react-redux-firebase";
 class AdminAuthority extends Component {
   addAuthorityHandler = () => {
     console.log("Clicked");
-    console.log(this.props.history);
     this.props.history.push("/admin/addauthority");
   };
   render() {
-    const { authorities } = this.props;
+    const { authorities, auth } = this.props;
     return (
       <div className="row">
         <div className="col S12 m1">
@@ -26,7 +25,7 @@ class AdminAuthority extends Component {
         <div className="col s12 m10">
           <br />
           <div className="divider"></div>
-          <Table authorities={authorities} />
+          <Table authorities={authorities} auth={auth} />
         </div>
       </div>
     );
@@ -35,9 +34,9 @@ class AdminAuthority extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    authorities: state.firestore.ordered.authority,
     auth: state.firebase.auth,
     authError: state.auth.authError,
+    authorities: state.firestore.ordered.authority,
   };
 };
 
@@ -46,7 +45,7 @@ export default compose(
   firestoreConnect([
     {
       collection: "authority",
-      orderBy: ["name", "asc"],
+      orderBy: ["locality", "asc"],
     },
   ])
 )(AdminAuthority);

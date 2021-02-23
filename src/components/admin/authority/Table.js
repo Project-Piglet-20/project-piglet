@@ -14,7 +14,10 @@ import { withRouter } from "react-router-dom";
 
 const Table = (props) => {
   var key = 0;
-  var { authorities } = props;
+  var { authorities, auth } = props;
+  if (auth.email !== "project.test.mail.19@gmail.com") {
+    props.history.push("/adminlogin");
+  }
   var authorityList =
     authorities &&
     authorities.map((authority) => {
@@ -36,7 +39,7 @@ const Table = (props) => {
             {"\xa0\xa0"} {authority.password}
           </td>
           <td className="center">
-            {"\xa0\xa0"} {authority.locality}
+            {"\xa0\xa0"} <b>{authority.locality}</b>
           </td>
           <td className="center">
             <button

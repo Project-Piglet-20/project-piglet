@@ -9,7 +9,7 @@ class AdminCategory extends Component {
     this.props.history.push("/admin/addcategory");
   };
   render() {
-    const { dropdown } = this.props;
+    const { dropdown, auth } = this.props;
     const btn_data = "ADD CATEGORY";
     return (
       <div className="row">
@@ -27,7 +27,7 @@ class AdminCategory extends Component {
         <div className="col s12 m10">
           <br />
           <div className="divider"></div>
-          <Table categories={dropdown} />
+          <Table categories={dropdown} auth={auth} />
         </div>
       </div>
     );
@@ -36,8 +36,8 @@ class AdminCategory extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    dropdown: state.firestore.ordered.dropdownList,
     auth: state.firebase.auth,
+    dropdown: state.firestore.ordered.dropdownList,
   };
 };
 

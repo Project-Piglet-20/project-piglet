@@ -11,6 +11,7 @@ import { createStore, applyMiddleware, compose } from "redux";
 import { reduxFirestore, getFirestore } from "redux-firestore";
 import { reactReduxFirebase, getFirebase } from "react-redux-firebase";
 
+
 const store = createStore(
   rootReducer,
   compose(

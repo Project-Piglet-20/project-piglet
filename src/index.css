@@ -45,6 +45,11 @@ code {
   border-radius: 50%;
 } */
 
+.verticalLine {
+  border-left: 2px solid #37474f;
+  height: 500px;
+}
+
 .bounce {
   animation-name: bounce;
   animation-fill-mode: both;
@@ -135,6 +140,18 @@ code {
   padding-left: 90px;
 }
 
+.homebtn {
+  padding-left: 90px;
+}
+
+.aboutbtn {
+  padding-left: 85px;
+}
+
+.reportbtn {
+  padding-left: 80px;
+}
+
 .date-spacing{
   padding-left: 40px;
 }
@@ -162,16 +179,13 @@ code {
 }
 
 .cardTitleHeight {
-  height: 100px;
-}
-
-.cardHeight {
-  height: 310px;
+  height: 130px;
 }
 
 .cardImage {
   max-width: 360px;
   min-width: 100px;
+  height: 600px;
 }
 
 .paraPadding {
@@ -184,7 +198,7 @@ code {
 }
 
 .footerSpacing {
-  padding-bottom: 10px;
+  padding-bottom: 1px;
   padding-left: 10px;
   padding-right: 10px;
 }
@@ -210,7 +224,7 @@ code {
 }
 
 .mapSize {
-  height: 60vh;
+  height: 45vh;
   width: 100%;
 }
 

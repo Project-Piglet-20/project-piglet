@@ -6,13 +6,13 @@ import { firestoreConnect } from "react-redux-firebase";
 
 class AdminIssues extends Component {
   render() {
-    const { issues, notifications } = this.props;
+    const { issues, notifications, auth } = this.props;
     return (
       <div className="row">
         <div className="col s12 m10 offset-m1">
           <br />
           <div className="divider"></div>
-          <Table issues={issues} notifications={notifications} />
+          <Table issues={issues} notifications={notifications} auth={auth} />
         </div>
       </div>
     );
@@ -21,9 +21,9 @@ class AdminIssues extends Component {
 
 const mapStateToProps = (state) => {
   return {
+    auth: state.firebase.auth,
     issues: state.firestore.ordered.issues,
     notifications: state.firestore.ordered.notifications,
-    auth: state.firebase.auth,
   };
 };
 

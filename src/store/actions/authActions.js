@@ -1,16 +1,16 @@
 export const signIn = (credentials) => {
   return (dispatch, getState, { getFirebase }) => {
-    let itr = 0;
-    var password = "";
-    for (itr = 0; itr < credentials.password.length; itr++) {
-      password = password.concat(
-        String.fromCharCode(credentials.password.charCodeAt(itr) + 1)
-      );
-    }
+    // let itr = 0;
+    // var password = "";
+    // for (itr = 0; itr < credentials.password.length; itr++) {
+    //   password = password.concat(
+    //     String.fromCharCode(credentials.password.charCodeAt(itr) + 1)
+    //   );
+    // }
     const firebase = getFirebase();
     firebase
       .auth()
-      .signInWithEmailAndPassword(credentials.email, password)
+      .signInWithEmailAndPassword(credentials.email, credentials.password)
       .then(() => {
         dispatch({ type: "LOGIN_SUCCESS" });
       })

@@ -4,26 +4,27 @@ import CommonLinks from "./CommonLinks";
 import SignedInLinks from "./SignedInLinks";
 import { withRouter } from "react-router-dom";
 import AuthoritySignedInLinks from "./AuthoritySignedInLinks";
+import UserLinks from "./UserLinks";
 
 const Navbar = (props) => {
   const curLoc = props.location.pathname.slice(1).toUpperCase();
   const { auth } = props;
   const links = auth.uid ? (
-      auth.email ? (
-        auth.email === "project.test.mail.19@gmail.com" ? (
-          <SignedInLinks />
-        ) : (
-          <AuthoritySignedInLinks />
-        )
+    auth.email ? (
+      auth.email === "project.test.mail.19@gmail.com" ? (
+        <SignedInLinks />
       ) : (
-        <>
-          <CommonLinks />
-          {/* <UserLinks /> */}
-        </>
+        <AuthoritySignedInLinks />
       )
     ) : (
-      <CommonLinks />
-    );
+      <>
+        <CommonLinks />
+        <UserLinks />
+      </>
+    )
+  ) : (
+    <CommonLinks />
+  );
   return (
     <div>
       <div className="navBar">
@@ -40,7 +41,9 @@ const Navbar = (props) => {
               </ul>
               <ul id="nav-mobile" className="sidenav">
                 <li>
-                  <h4 className="deep-orange-text text-accent-3 center">PIGLET</h4>
+                  <h4 className="deep-orange-text text-accent-3 center">
+                    PIGLET
+                  </h4>
                 </li>
                 <br />
                 <span className="left">{links}</span>

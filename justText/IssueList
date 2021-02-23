@@ -1,0 +1,73 @@
+import React, { Component } from "react";
+import IssueSummary from "./IssueSumary";
+import { Link } from "react-router-dom";
+
+class IssueList extends Component {
+  id = 1;
+  state = {
+    issueList:
+      this.props.issues &&
+      this.props.issues.map((issue) => {
+        return (
+          <Link to={"/issues/" + issue.id} key={this.id++}>
+            <IssueSummary issue={issue} />
+          </Link>
+        );
+      }),
+  };
+  switchHandler = (event) => {
+    event.preventDefault();
+    var newIssueList = [];
+    if (parseInt(event.target.value) === 1) {
+      newIssueList = this.props.issues.filter((issue) => {
+        return issue.Status === "Reported";
+      });
+    } else if (parseInt(event.target.value) === 2) {
+      newIssueList = this.props.issues.filter((issue) => {
+        return issue.Status === "Resolved";
+      });
+    } else {
+      newIssueList = this.props.issues;
+    }
+    var newlistOfIssues = newIssueList.map((issue) => {
+      return (
+        <Link to={"/issues/" + issue.id} key={this.id++}>
+          <IssueSummary issue={issue} />
+        </Link>
+      );
+    });
+    this.setState({ issueList: newlistOfIssues });
+  };
+  render() {
+    return (
+      <div className="issue-list section">
+        <div className="divider dividerpadding black"></div>
+        <div className="input-field">
+          <select onChange={(event) => this.switchHandler(event)}>
+            <option value="" disabled>
+              Apply Filter
+            </option>
+            <option value="3">All</option>
+            <option value="1">Reported</option>
+            <option value="2">Resolved</option>
+          </select>
+        </div>
+        <div className="row">
+          {this.state.issueList
+            ? this.state.issueList
+            : this.props.issues &&
+              this.props.issues.map((issue) => {
+                return (
+                  <Link to={"/issues/" + issue.id} key={this.id++}>
+                    <IssueSummary issue={issue} />
+                  </Link>
+                );
+              })}
+        </div>
+      </div>
+    );
+  }
+}
+
+export default IssueList;
+

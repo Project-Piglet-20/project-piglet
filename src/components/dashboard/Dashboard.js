@@ -56,6 +56,17 @@ class Dashboard extends Component {
               />
             </div>
           </div>
+          {/* {window.innerWidth < 400 ? (
+            <></>
+          ) : (
+            <div className="col m1">
+              <div className="row">
+                <div className="col m1 offset-m5">
+                  <div className="verticalLine"></div>
+                </div>
+              </div>
+            </div>
+          )} */}
           <div className="col s12 m3 offset-m1">
             <Notifications
               notifications={

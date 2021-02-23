@@ -1,16 +1,19 @@
 import React from "react";
 import { connect } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { NavLink, withRouter } from "react-router-dom";
 import { signOut } from "../../../store/actions/authActions";
 
+// btn btn-floating white grey-text text-darken-4 waves-effect waves-light
+// btn-flat white grey-text text-darken-4 waves-effect waves-light
+
 const UserLinks = (props) => {
-  const { auth } = props;
   return (
     <>
       <li>
         <NavLink
-          className="btn-flat white grey-text text-darken-4 waves-effect waves-light"
-          to="/"
+          className="btn-flat red darken-4 white-text waves-effect waves-light"
+          // to={props.history.location.pathname}
+          to="#"
           onClick={props.signOut}
         >
           Logout
@@ -32,4 +35,7 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserLinks);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withRouter(UserLinks));

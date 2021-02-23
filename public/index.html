@@ -24,6 +24,7 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
     <link
       type="text/css"
       rel="stylesheet"
@@ -49,45 +50,34 @@
     <title>React App</title>
   </head>
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
-
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
+    <script src="app.js"></script>
     <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const options = [];
-        var elems = document.querySelectorAll(".sidenav");
-        var instances = M.Sidenav.init(elems, options);
-      });
-      document.addEventListener("DOMContentLoaded", function () {
-        const options = [];
-        var elems = document.querySelectorAll(".modal");
-        var instances = M.Modal.init(elems, options);
-      });
-      document.addEventListener("DOMContentLoaded", function () {
-        const options = [];
-        var elems = document.querySelectorAll(".tabs");
-        var instance = M.Tabs.init(elems, options);
-      });
-      document.addEventListener("DOMContentLoaded", function () {
-        const options = [];
-        var elems = document.querySelectorAll(".dropdown-trigger");
-        var instances = M.Dropdown.init(elems, options);
-      });
-
-      if ("serviceWorker" in navigator) {
-        navigator.serviceWorker.register("/sw.js").then(function () {
-          console.log("registered service worker");
-        });
-      }
+      // document.addEventListener("DOMContentLoaded", function () {
+      //   const options = [];
+      //   var elems = document.querySelectorAll(".sidenav");
+      //   var instances = M.Sidenav.init(elems, options);
+      // });
+      // document.addEventListener("DOMContentLoaded", function () {
+      //   const options = [];
+      //   var elems = document.querySelectorAll(".modal");
+      //   var instances = M.Modal.init(elems, options);
+      // });
+      // document.addEventListener("DOMContentLoaded", function () {
+      //   const options = [];
+      //   var elems = document.querySelectorAll(".tabs");
+      //   var instance = M.Tabs.init(elems, options);
+      // });
+      // document.addEventListener("DOMContentLoaded", function () {
+      //   const options = [];
+      //   var elems = document.querySelectorAll(".dropdown-trigger");
+      //   var instances = M.Dropdown.init(elems, options);
+      // });
+      // document.addEventListener("DOMContentLoaded", function () {
+      //   const options = [];
+      //   var elems = document.querySelectorAll("select");
+      //   var instances = M.FormSelect.init(elems, options);
+      // });
     </script>
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>

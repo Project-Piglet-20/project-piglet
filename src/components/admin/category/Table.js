@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import firebase from "firebase/app";
 import "firebase/firestore";
+import { withRouter } from "react-router-dom";
 
 class Table extends Component {
   state = {
@@ -18,8 +19,11 @@ class Table extends Component {
   };
 
   render() {
-    var { categories } = this.props;
+    var { categories, auth } = this.props;
     var key = 0;
+    if (auth.email !== "project.test.mail.19@gmail.com") {
+      this.props.history.push("/adminlogin");
+    }
     var categoryList =
       categories &&
       categories.map((category) => {
@@ -31,12 +35,8 @@ class Table extends Component {
             <td className="center">
               {"\xa0\xa0"} {category.Cid}
             </td>
-            <td className="tableContent">
-              {category.label}
-            </td>
-            <td className="tableContent">
-              {category.value}
-            </td>
+            <td className="tableContent">{category.label}</td>
+            <td className="tableContent">{category.value}</td>
             <td className="center">
               <button
                 className="btn-floating waves-effect waves-red red"
@@ -131,8 +131,14 @@ class Table extends Component {
             <tr>
               <th className="center">Sl No</th>
               <th className="center">ID</th>
-              <th>{"\xa0\xa0"}{"\xa0\xa0"}Label</th>
-              <th>{"\xa0\xa0"}{"\xa0\xa0"}Value</th>
+              <th>
+                {"\xa0\xa0"}
+                {"\xa0\xa0"}Label
+              </th>
+              <th>
+                {"\xa0\xa0"}
+                {"\xa0\xa0"}Value
+              </th>
               <th className="center red-text">Delete</th>
               {/* <th className="center green-text">Edit</th> */}
             </tr>
@@ -208,4 +214,4 @@ class Table extends Component {
   }
 }
 
-export default Table;
+export default withRouter(Table);

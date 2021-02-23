@@ -8,7 +8,9 @@ const Resolved = (props) => {
       <div className="card z-dept-0 green darken-1">
         <div className="card-content">
           <span className="card-title black-text">
-            <b>RESOLVED<i class="material-icons left">done_all</i></b>
+            <b>
+              RESOLVED<i className="material-icons left">done_all</i>
+            </b>
           </span>
           <div className="divider white"></div>
           <ul className="notifications black-text">
@@ -16,9 +18,12 @@ const Resolved = (props) => {
               notifications.map((notification) => {
                 return (
                   <li key={notification.id}>
-                    <i className="material-icons left black-text">arrow_right</i>
+                    <i className="material-icons left black-text">
+                      arrow_right
+                    </i>
                     <span>
-                      <b className="white-text">{notification.problem}</b> resolved in{" "}
+                      <b className="white-text">{notification.problem}</b>{" "}
+                      resolved in{" "}
                       <b className="white-text">{notification.locality}</b>
                     </span>
                     <div className="black-text note-date date-spacing">
