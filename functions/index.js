@@ -1,26 +1,34 @@
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
-admin.initializeApp(functions.config().firebase);
 
-const createNotifications = (notification) => {
-  return admin
-    .firestore()
-    .collection("notifications")
-    .add(notification)
-    .then((doc) => console.log("notification added", doc));
+admin.initializeApp();
+
+const createNotification = async (notification) => {
+  try {
+    const docRef = await admin
+      .firestore()
+      .collection("notifications")
+      .add(notification);
+    console.log("Notification added", docRef.id);
+    return docRef;
+  } catch (error) {
+    console.error("Error adding notification", error);
+    throw error;
+  }
 };
 
 exports.issueCreated = functions.firestore
   .document("issues/{issueId}")
-  .onCreate((doc) => {
-    const issue = doc.data();
-    console.log(doc.id);
+  .onCreate(async (snap, context) => {
+    const issue = snap.data();
+    console.log("Issue created with ID:", context.params.issueId);
     const notification = {
-      locality: `${issue.Locality}`,
-      problem: `${issue.Type}`,
+      locality: issue.Locality,
+      problem: issue.Type,
       time: admin.firestore.FieldValue.serverTimestamp(),
       status: "Reported",
-      docId: `${doc.id}`,
+      docId: context.params.issueId,
     };
-    return createNotifications(notification);
+
+    return createNotification(notification);
   });

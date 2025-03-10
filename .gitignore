@@ -27,3 +27,5 @@ package-lock.json
 firebase.json
 
 .eslintcache
+firestore.rules
+firestore.indexes.json
